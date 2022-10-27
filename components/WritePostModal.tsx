@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { db } from "config/firebase/firebase";
+import { useAuth } from "context/AuthContext";
 import { addDoc, collection } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import images from "utils/randomImg.json";
@@ -24,6 +25,7 @@ export default function WritePost() {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
 
+  const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleWritePost = async () => {
@@ -39,6 +41,7 @@ export default function WritePost() {
     try {
       setLoading(true);
       await addDoc(collection(db, "posts"), {
+        user: user.uid,
         title: titleVal,
         content: contentVal,
         img: imgVal,

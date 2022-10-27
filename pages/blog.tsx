@@ -59,8 +59,6 @@ const Blog = () => {
       const postArray = [];
       snapshot.docs.forEach((doc) => {
         if (doc.data().user === user.uid) {
-          console.log(doc.data().user);
-          
           postArray.push({ ...doc.data(), id: doc.id });
         }
       });
