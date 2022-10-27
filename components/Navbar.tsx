@@ -26,8 +26,8 @@ const Links = [
     href: "/",
   },
   {
-    name: "Blog",
-    href: "/blog",
+    name: "Blogs",
+    href: "/blogs",
   },
   {
     name: "Secret",

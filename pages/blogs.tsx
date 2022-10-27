@@ -53,21 +53,6 @@ const Blog = () => {
     }
   };
 
-  const realTimeGetPosts = async (db: Firestore) => {
-    const postsCol = collection(db, "posts");
-    onSnapshot(postsCol, (snapshot) => {
-      const postArray = [];
-      snapshot.docs.forEach((doc) => {
-        if (doc.data().user === user.uid) {
-          postArray.push({ ...doc.data(), id: doc.id });
-        }
-      });
-      setPosts(postArray);
-      setLoading(false);
-      setFadeIn(true);
-    });
-  };
-
   const deletePost = async (id: string) => {
     try {
       await deleteDoc(doc(db, "posts", id));
@@ -77,8 +62,23 @@ const Blog = () => {
   };
 
   useEffect(() => {
+    const realTimeGetPosts = async (db: Firestore) => {
+      const postsCol = collection(db, "posts");
+      onSnapshot(postsCol, (snapshot) => {
+        const postArray = [];
+        snapshot.docs.forEach((doc) => {
+          if (doc.data().user === user.uid) {
+            postArray.push({ ...doc.data(), id: doc.id });
+          }
+        });
+        setPosts(postArray);
+        setLoading(false);
+        setFadeIn(true);
+      });
+    };
+
     realTimeGetPosts(db);
-  }, []);
+  }, [user.uid]);
 
   return (
     <>
