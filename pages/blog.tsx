@@ -19,6 +19,7 @@ import LoadingSpinner from "components/LoadingSpinner";
 import WritePostModal from "components/WritePostModal";
 import { Private } from "config/firebase/authRoute";
 import { db } from "config/firebase/firebase";
+import { useAuth } from "context/AuthContext";
 import { addDoc, collection, deleteDoc, doc, Firestore, onSnapshot } from "firebase/firestore";
 import { SetStateAction, useEffect, useState } from "react";
 import { PostFormat } from "types/posts";
@@ -30,6 +31,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [selectPost, setSelectPost] = useState<PostFormat>(null);
 
+  const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const selectedPost = (post: SetStateAction<PostFormat>) => {
@@ -41,6 +43,7 @@ const Blog = () => {
     try {
       const randomPost = randomPosts["posts"][Math.floor(Math.random() * randomPosts["posts"].length)];
       await addDoc(collection(db, "posts"), {
+        user: user.uid,
         title: randomPost.title,
         content: randomPost.content,
         img: randomPost.img,
@@ -55,7 +58,11 @@ const Blog = () => {
     onSnapshot(postsCol, (snapshot) => {
       const postArray = [];
       snapshot.docs.forEach((doc) => {
-        postArray.push({ ...doc.data(), id: doc.id });
+        if (doc.data().user === user.uid) {
+          console.log(doc.data().user);
+          
+          postArray.push({ ...doc.data(), id: doc.id });
+        }
       });
       setPosts(postArray);
       setLoading(false);
