@@ -9,7 +9,7 @@ test.describe("Index", () => {
     
     await expect(page).toHaveURL("https://jg-mindset.vercel.app/");
 
-    await page.locator("input").fill("Test test string");
-    await expect(page.locator(".css-cktl6h").first()).toHaveText("Test test string");
+    await page.locator("input").fill("test2");
+    await expect(page.locator(".css-cktl6h").first()).not.toHaveText("test");
   });
 });
