@@ -17,6 +17,6 @@ test.describe("Index", () => {
   test("Input boxes should not match different strings", async ({ page }) => {
     await expect(page).toHaveURL("/");
     await page.locator("input").fill("test2");
-    await expect(page.locator(".css-cktl6h").first()).not.toHaveText("test");
+    await expect(page.locator(".css-cktl6h").first()).not.toHaveText("something else");
   });
 });

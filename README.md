@@ -1,3 +1,18 @@
+# Testing
+
+## This is the testing branch which using [Playwright](https://playwright.dev/) to handle E2E testing.
+
+<br> 
+You can run the test by using the following command:
+
+```bash
+npx playwright test
+```
+
+## Or you can install the VsCode extension [Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
+
+<br>
+
 # Install
 
 - Install all packages and start the server.
