@@ -8,11 +8,20 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Blogs page", () => {
+  test("should show navbar", async ({ page }) => {
+    await expect(page).toHaveURL("/");
+    await page.getByRole("button", { name: "Blogs" }).click();
+
+    expect(
+      page.locator('div:has-text("HomeBlogsSecret Hello, demo@test.com! ProfileSettingsLogout")').nth(1).isVisible()
+    );
+  });
+
   test("write post should create new blog", async ({ page }) => {
     await expect(page).toHaveURL("/");
 
     await page.getByRole("button", { name: "Blogs" }).click();
-    await expect(page).toHaveURL("https://jg-mindset.vercel.app/blogs");
+    await expect(page).toHaveURL("/blogs");
     await page.getByRole("button", { name: "Write article" }).click();
 
     expect(page.locator('section[role="dialog"]:has-text("A photo will be chosen for you.Post!Cancel")').isVisible());
