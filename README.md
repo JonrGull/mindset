@@ -1,4 +1,4 @@
-![MindsetDemo](https://user-images.githubusercontent.com/25947147/203895346-cc5c7aaa-0ee5-4478-921c-cf4615c01ec6.gif)
+![MindsetDemo](https://user-images.githubusercontent.com/25947147/203896262-da530641-12df-4430-a4f1-444d5ee2f69b.gif)
 
 # Install
 
