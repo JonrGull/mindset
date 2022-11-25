@@ -1,3 +1,5 @@
+![MindsetDemo](https://user-images.githubusercontent.com/25947147/203895346-cc5c7aaa-0ee5-4478-921c-cf4615c01ec6.gif)
+
 # Install
 
 - Install all packages and start the server.
