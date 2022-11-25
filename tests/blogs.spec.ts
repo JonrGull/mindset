@@ -12,9 +12,7 @@ test.describe("Blogs page", () => {
     await expect(page).toHaveURL("/");
     await page.getByRole("button", { name: "Blogs" }).click();
 
-    expect(
-      page.locator('div:has-text("HomeBlogsSecret Hello, demo@test.com! ProfileSettingsLogout")').nth(1).isVisible()
-    );
+    expect(page.locator('nav[role="navigation"]')).toBeVisible();
   });
 
   test("write post should create new blog", async ({ page }) => {
@@ -27,7 +25,6 @@ test.describe("Blogs page", () => {
     expect(page.locator('section[role="dialog"]:has-text("A photo will be chosen for you.Post!Cancel")').isVisible());
 
     await page.getByPlaceholder("Title").fill("Playwright Test");
-    await page.getByPlaceholder("Title").press("Tab");
     await page.getByPlaceholder("Content").fill("This is a test from Playwright.");
     await page.getByRole("button", { name: "Post!" }).click();
 
