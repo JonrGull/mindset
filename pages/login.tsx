@@ -57,11 +57,11 @@ const Login = () => {
               {error && <ErrorMessage message={error} />}
               <FormControl isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" ref={emailRef} />
+                <Input type="email" ref={emailRef} defaultValue={"Demo@gmail.com"} />
               </FormControl>
               <FormControl isRequired>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" ref={passwordRef} minLength={6} />
+                <Input type="password" ref={passwordRef} minLength={6} defaultValue={"123456"} />
               </FormControl>
               <Stack spacing={10}>
                 <Stack direction={{ base: "column", sm: "row" }} align={"start"} justify={"space-between"}>
